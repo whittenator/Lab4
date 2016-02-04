@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sample Scripts</title>
+        <style>
+            td{text-align:center;}
+            table{border-spacing:20px;}
+        </style>        
+        <script>
+            function validate(){
+                var num;
+        
+                num = document.getElementById("numberbox").value;
+                if(isNaN(num) || num<1 || num>10){
+                    document.getElementById("output").innerHTML = "invalid number!";
+                    document.getElementById("numberbox").value = '';
+                } else {
+                    document.getElementById("output").innerHTML = "number validated!";
+                }
+                    
+            }
+            function colorScript(){
+                document.getElementById("pane").innerHTML = 
+                    "<form action='phpProcessingPageName.php' method='POST'>"+
+                    "Enter color: <input type='textbox'>" +
+                    "<input type='submit' value='Send Color'></form>";
+
+            }
+            function shapeScript(){
+                document.getElementById("pane").innerHTML = 
+                    "<form action='phpProcessingPageName.php' method='POST'>" +
+                    "Enter shape: <input type='textbox'>" +
+                    "<input type='submit' value='Send Shape'></form>";
+
+            }
+            function validateAgain(){
+                var element = document.getElementById("name");
+                var text = element.value;
+                if(text.length < 4){
+                    document.getElementById("textoutput").innerHTML = "Must be longer than 4 characters!";
+                }else{
+                    document.getElementById("textoutput").innerHTML = "Validated!";
+                }
+                
+            }
+            function validateEmail(){
+                var testAdd = document.getElementById("email").value;
+                if (testAdd.length < 6){
+                    document.getElementById("emailoutput").innerHTML = "Must be longer than 6 characters!";
+                }else if (testAdd.indexOf("@") == -1){
+                    document.getElementById("emailoutput").innerHTML = "Must contain an @ symbol!";
+                }else if (testAdd.indexOf(".") == -1){
+                    document.getElementById("emailoutput").innerHTML = "Must contain a period!";
+                }else {
+                    document.getElementById("emailoutput").innerHTML = "Validated!";
+                }
+            }
+            function flipBlack(){
+                var checkStatus = document.getElementById("chkBlack");
+                if (checkStatus.checked){
+                    document.getElementById("outputBlack").innerHTML = "I Like Black.";
+                }else{
+                    document.getElementById("outputBlack").innerHTML = "I do not like Black.";
+                }
+ }
+        </script>
+    </head>
+    <body>
+        <p id="part1">
+            This is some text that I can change by clicking the following button.
+        </p>
+        <button type="button" onclick="document.getElementById('part1').innerHTML = 'Text swapped out.'">
+            Swap Text
+        </button>
+        <br><br>
+        <hr>
+        <br><br>
+<!-- Validate example Script -->
+        Enter a number between 1-10:<br>        
+        <input id="numberbox" type="number">        
+        <button type="button" onclick="validate()">Validate</button>
+        <br>
+        <p id="output"></p>
+        <br>
+<!-- Validate example #2 -->
+        <br>
+        Enter at least 4 letters:<br>
+        <input id="name" type="text">
+        <button type="button" onclick="validateAgain()">Validate</button>
+        <br>
+        <p id="textoutput"></p>
+        <br>
+<!-- Validate email -->
+        <br>
+        Enter email address:<br>
+        <input id="email" type="text">
+        <button type="button" onclick="validateEmail()">Validate</button>
+        <p id="emailoutput"></p>        
+        <br><br>
+        <hr>
+                
+<!--Third example script -->
+        <table>
+            <tr>
+                <td>
+                    <input type="radio" name="group1" value="colors" onclick="colorScript()">colors
+                    <br>
+                    <input type="radio" name="group1" value="shapes" onclick="shapeScript()">shapes
+                    <br>                
+                </td>
+                <td>
+                    <p id="pane"></p>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+<!-- Checkbox Example -->
+        <br>
+        <input id="chkBlack" type="checkbox" name="black" value="likeBlack" onclick="flipBlack()" checked>
+        <p id="outputBlack">I Like Black.</p>
+
+        <hr>Created by:  Aaron Saas 8/26/2015
+    </body>
+</html>
+
+
