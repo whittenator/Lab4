@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+
+       	<title>Assignment 2 - Ahmad Jamialahmadi</title>     
+  
+        <script>
+	    	function MakeSentence() {
+				var flag = false;
+				var message = "<ul type='disc'>";
+				
+				var name = document.getElementById("nameBox").value;
+				var age = document.getElementById("ageBox").value;
+				
+				var matches = name.match(/\d+/g); //  \d+, search for any digit from 0 to 9 (\d) repeated one or more times (+). The qualifier g will make the search global (ie: don't stop on the first hit).
+				
+				if (matches != null) { // check whether the input box contains any number
+					message = message + "<li>The name must only contain letters!</li><br>"
+					document.getElementById("sentenceFeedback").innerHTML = message;
+					flag = true;				
+				}else if (name == ''){ // Check whether the name input box is empty
+					message = message + "<li>Please enter a name!</li><br>"
+					document.getElementById("sentenceFeedback").innerHTML = message;
+					flag = true;
+				}
+					// Check whether the age input box is empty
+				if (isNaN(age)){
+					message = message + "<li>Please Enter an Age!</li>"
+					document.getElementById("sentenceFeedback").innerHTML = message;
+					flag = true;
+				} else if (age < 1 || age > 100){
+					message = message + "<li>Please enter an age in the range 1-100!</li>"
+					document.getElementById("sentenceFeedback").innerHTML = message;
+					flag = true;
+				}
+		
+				// return if name or age box contain wrong input
+				if (flag){
+					document.getElementById("sentenceFeedback").style.color = "red";
+					return;
+				}
+				
+				// Display the Welcome message and reset the name/age feedback messages
+				document.getElementById("sentenceFeedback").style.color = "blue";
+				document.getElementById("sentenceFeedback").innerHTML = "Hello! My name is " + name + ". I am " + age + " years old.";
+			}
+
+		
+			var randNum = Math.floor((Math.random() * 10) + 1); // Generating a Global Random Number!
+				function GuessNumber() {
+				var myNum = document.getElementById("guessNumber").value;
+				document.getElementById("guessNumber").value = ''; // Clearing the input box
+				// Check whether the number is in Range 1-10
+				if (myNum<1 || myNum>10) {
+					document.getElementById("guessNumberFeedback").style.color = "red";
+					document.getElementById("guessNumberFeedback").innerHTML = "Please select a number in the range 1-10";
+					return;
+				}
+					
+				// Compare the guess value with rand number and return feedback
+				if (myNum < randNum){
+					document.getElementById("guessNumberFeedback").style.color = "red";
+					document.getElementById("guessNumberFeedback").innerHTML = "You guess number '" + myNum + "' is low! Try guessing a larger number!";
+				} else if (myNum > randNum) {
+					document.getElementById("guessNumberFeedback").style.color = "red";
+					document.getElementById("guessNumberFeedback").innerHTML = "You guess number '" + myNum + "' is high! Try guessing a smaller number!";
+				} else {
+					document.getElementById("guessNumberFeedback").style.color = "blue";
+					document.getElementById("guessNumberFeedback").innerHTML = "You Won! The magic number is '" + randNum + "'.";
+				}
+			}
+       	</script>
+    </head>
+
+	<body>
+		<!-- Name Box and Feedback Field -->
+		Name:<br>        
+		<input id="nameBox" type="text">   
+		<br>
+
+		<!-- Age Box and Feedback Field -->
+		Age:<br>
+		<input id="ageBox" type="number">
+		<br><br>
+		<button type="button" onclick="MakeSentence()">Make Sentence</button>
+		<br>
+		<p style="color:blue"  id="sentenceFeedback"></p>
+
+		<br><br><br><br><br>
+
+		<!-- Guess Number Box and Feedback Field -->
+		Guess a number 1-10:<br>
+		<input id="guessNumber" type="number">
+		<button type="button" onclick="GuessNumber()">Guess</button>
+		<br>
+		<p style="color:red"  id="guessNumberFeedback"></p>        
+		<br><br>
+
+		<!-- Signature-->
+		<hr>
+		<p style="font-size:10pt">Created by: Ahmad Jamialahmadi 1/21/2016</p>
+	
+	</body>
+</html>
